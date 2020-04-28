@@ -1,0 +1,268 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.7707257,
+          41.4686106
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "category": "grocery-or-supermarket",
+        "hours": "7am-9pm",
+        "description": "3050 W 150th Street, Cleveland, Ohio 44111",
+        "name": "Giant Eagle Supermarket",
+        "phone": "(216)941-5012",
+        "storeid": "01"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.8561775,
+          41.4606067
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "category": "grocery-or-supermarket",
+        "hours": "9am - 7pm",
+        "description": "21329 Center Ridge Rd, Fairview Park, OH 44116",
+        "name": "ALDI",
+        "phone": "(855) 955-2534",
+        "storeid": "02"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.7696936, 41.4779098
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "category": "grocery-or-supermarket",
+        "hours": "9am - 7pm",
+        "description": "1600 W 117th St, Lakewood, OH 44107",
+        "name": "ALDI",
+        "phone": "(855) 955-2534",
+        "storeid": "03"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.8179997, 41.4508299
+          
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "category": "grocery-or-supermarket",
+        "hours": "7am-7pm",
+        "description": "17400 Lorain Ave, Cleveland, OH 44111",
+        "name": "Marc's",
+        "phone": "(216) 251-3456",
+        "storeid": "04"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.786111,
+          41.470277
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "category": "grocery-or-supermarket",
+        "hours": "8am - 9pm",
+        "description": "13609 Lakewood Heights Blvd, Cleveland, OH 44107",
+        "name": "La Plaza Supermarket",
+        "phone": "(216)476-8000",
+        "storeid": "05"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.8596979,
+          41.4580238
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "category": "grocery-or-supermarket",
+        "hours": "7am-7pm",
+        "description": "21661 Center Ridge Rd, Rocky River, OH 44116",
+        "name": "Marc's",
+        "phone": "(440) 356-6240",
+        "storeid": "06"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.834573,
+          41.482401
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "category": "grocery-or-supermarket",
+        "hours": "8am - 7pm",
+        "description": "19219 Detroit Road, Rocky River",
+        "name": "Heinen's",
+        "phone": "(440) 331-3830",
+        "storeid": "07"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.80101599999999,
+          41.484009
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "category": "grocery-or-supermarket",
+        "hours": "8am-7pm",
+        "description": "14861 Detroit Avenue, Lakewood",
+        "name": "Marc's",
+        "phone": "(216) 521-2191",
+        "storeid": "08"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.8643799,
+          41.45988079999999
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "category": "grocery-or-supermarket",
+        "hours": "8am - 9:30pm",
+        "description": "22160 Center Ridge Road, Rocky River",
+        "name": "Giant Eagle Supermarket",
+        "phone": "(440) 333-2733",
+        "storeid": "09"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.8608314, 41.4422825
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "category": "grocery-or-supermarket",
+        "hours": "8am - 9:30pm",
+        "description": "21593 Lorain Road, Fairview Park",
+        "name": "Giant Eagle Supermarket",
+        "phone": "(440) 356-3666",
+        "storeid": "10"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.8032039, 41.4634355
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "category": "grocery-or-supermarket",
+        "hours": "8am - 9:30pm",
+        "description": "15325 Edgecliff Avenue, Cleveland",
+        "name": "Giant Eagle Supermarket",
+        "phone": "(216) 476-2292",
+        "storeid": "11"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.9123101,
+          41.4692264
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "category": "grocery-or-supermarket",
+        "hours": "7am-9pm",
+        "description": "26400 Detroit Road, Westlake",
+        "name": "Marc's",
+        "phone": "(440) 892-6060",
+        "storeid": "12"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.7911105,
+          41.48658259999999
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "category": "grocery-or-supermarket",
+        "hours": "8am - 9:30pm",
+        "description": "14100 Detroit Avenue, Lakewood",
+        "name": "Giant Eagle Supermarket",
+        "phone": "(216) 226-2698",
+        "storeid": "13"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.7615259, 41.4664015
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "category": "grocery-or-supermarket",
+        "hours": "8am - 9:30pm",
+        "description": "10820 Lorain Ave, Cleveland, OH 44111",
+        "name": "Family Dollar",
+        "phone": "(216) 251-7170",
+        "storeid": "14"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates":[-81.8396406, 41.4787484]
+      },
+      "type": "Feature",
+      "properties": {
+        "category": "grocery-or-supermarket",
+        "hours": "8am - 8pm",
+        "description": "19607 Detroit Rd, Rocky River, OH 44116",
+        "name": "Whole Foods Market",
+        "phone": "(440) 596-3440",
+        "storeid": "15"
+    }
+  }
+  ]
+}
