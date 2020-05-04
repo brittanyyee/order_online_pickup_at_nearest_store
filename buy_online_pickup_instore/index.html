@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+  
 <style>
   #map {
     height: 100%;
@@ -12,11 +13,10 @@
     padding: 0;
   }
 
-  /* Styling for autocomplete search bar */
   #pac-card {
     background-color: #fff;
     border-radius: 2px 0 0 2px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     box-sizing: border-box;
     font-family: Roboto;
     margin: 10px 10px 0 0;
@@ -35,7 +35,7 @@
     font-family: Roboto;
     font-size: 15px;
     font-weight: 300;
-    margin-left: 12px;
+    margin-left: 18px;
     padding: 0 11px 0 13px;
     text-overflow: ellipsis;
     width: 400px;
@@ -47,7 +47,7 @@
   
   #title {
     color: #fff;
-    background-color: #acbcc9;
+    background-color: #0067bb;
     font-size: 18px;
     font-weight: 400;
     padding: 6px 12px;
@@ -70,7 +70,7 @@
   }
   
   .open {
-    width: 250px;
+    width: 320px;
   }
   
   .place {
@@ -88,16 +88,25 @@
     font-size: 1em;
     font-weight: 400;
     margin-block-start: 0.25em;
-    padding-left: 18px;
+    padding-left: 28px;
     padding-right: 18px;
   }
+
+  .durationText {
+    color: silver;
+    font-family: 'open sans', arial, sans-serif;
+    font-size: 1em;
+    font-weight: 400;
+    padding-left: 28px;
+    padding-right: 18px;
+  }
+
+
 </style>
 </head>
 
 <body>
-<!-- The div to hold the map -->
 <div id="map"></div>
-
 
   <script src="app.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=
