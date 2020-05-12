@@ -35,7 +35,347 @@ const mapStyle = [
             }
         ]
     },const mapStyle = [
-    {
+    {const mapStyle = [
+  {
+      "featureType": "administrative",
+      "elementType": "all",
+      "stylers": [
+          {
+              "visibility": "off"
+          }
+      ]
+  },
+  {
+      "featureType": "landscape",
+      "elementType": "all",
+      "stylers": [
+          {
+              "visibility": "simplified"
+          },
+          {
+              "hue": "#0066ff"
+          },
+          {
+              "saturation": 74
+          },
+          {
+              "lightness": 100
+          }
+      ]
+  },
+  {
+      "featureType": "poi",
+      "elementType": "all",
+      "stylers": [
+          {
+              "visibility": "simplified"
+          }
+      ]
+  },
+  {
+      "featureType": "road",
+      "elementType": "all",
+      "stylers": [
+          {
+              "visibility": "simplified"
+          }
+      ]
+  },
+  {
+      "featureType": "road.highway",
+      "elementType": "all",
+      "stylers": [
+          {
+              "visibility": "off"
+          },
+          {
+              "weight": 0.6
+          },
+          {
+              "saturation": -85
+          },
+          {
+              "lightness": 61
+          }
+      ]
+  },
+  {
+      "featureType": "road.highway",
+      "elementType": "geometry",
+      "stylers": [
+          {
+              "visibility": "on"
+          }
+      ]
+  },
+  {
+      "featureType": "road.arterial",
+      "elementType": "all",
+      "stylers": [
+          {
+              "visibility": "off"
+          }
+      ]
+  },
+  {
+      "featureType": "road.local",
+      "elementType": "all",
+      "stylers": [
+          {
+              "visibility": "on"
+          }
+      ]
+  },
+  {
+      "featureType": "transit",
+      "elementType": "all",
+      "stylers": [
+          {
+              "visibility": "simplified"
+          }
+      ]
+  },
+  {
+      "featureType": "water",
+      "elementType": "all",
+      "stylers": [
+          {
+              "visibility": "simplified"
+          },
+          {
+              "color": "#5f94ff"
+          },
+          {
+              "lightness": 26
+          },
+          {
+              "gamma": 5.86
+          }
+      ]
+  }
+];
+
+function sanitizeHTML(strings) {
+const entities = {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', '\'': '&#39;'};
+let result = strings[0];
+for (let i = 1; i < arguments.length; i++) {
+  result += String(arguments[i]).replace(/[&<>'"]/g, (char) => {
+    return entities[char];
+  });
+  result += strings[i];
+}
+return result;
+}
+
+function initMap() {
+
+const map = new google.maps.Map(document.getElementById('map'), {
+  zoom: 12,
+  center: {lat:41.481674, lng: -81.826981},
+  styles: mapStyle,
+});
+
+map.data.loadGeoJson('stores.json', {idPropertyName: 'storeid'}, {idPropertyName: 'description'});
+
+
+map.data.setStyle((category) => {
+  return {
+    icon: {
+      url: `https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png`,
+      scaledSize: new google.maps.Size(24, 24),
+    },
+  };
+});
+const apiKey = 'AIzaSyCsiAYBYa0EyqNZadx3OXXorQbTQvIDrQI';
+const infoWindow = new google.maps.InfoWindow();
+
+map.data.addListener('click', (event) => {
+  const category = event.feature.getProperty('category');
+  const name = event.feature.getProperty('name');
+  const hours = event.feature.getProperty('hours');
+  const phone = event.feature.getProperty('phone');
+  const description = event.feature.getProperty('description');
+  const position = event.feature.getGeometry().get();
+  const content = sanitizeHTML`
+    <img style="float:left; width:210px; margin-top:30px" src="https://maps.googleapis.com/maps/api/streetview?size=370x280&location=${position.lat()},${position.lng()}&key=${apiKey}">
+    <div style="margin-left:220px; margin-bottom:20px;">
+      <h2>${name}</h2><p>${description}</p>
+      <p><b>Open:</b> ${hours}<br/><b>Phone:</b> ${phone}</p>
+      <p><img style="float:right" src="https://github.com/brittanyyee/order_online_pickup_at_nearest_store/blob/master/buy_online_pickup_instore/Marcs_logo_2%20(2).png?raw=true"</p>
+    </div>
+    `;
+
+  infoWindow.setContent(content);
+  infoWindow.setPosition(position);
+  infoWindow.setOptions({pixelOffset: new google.maps.Size(0, -30)});
+  infoWindow.open(map);
+});
+
+const card = document.createElement('div');
+const titleBar = document.createElement('div');
+const title = document.createElement('div');
+const container = document.createElement('div');
+const input = document.createElement('input');
+const options = {
+  types: ['address'],
+  componentRestrictions: {country: 'us'},
+};
+
+card.setAttribute('id', 'pac-card');
+title.setAttribute('id', 'title');
+title.textContent = 'Find your nearest Marcs Store Location';
+titleBar.appendChild(title);
+container.setAttribute('id', 'pac-container');
+input.setAttribute('id', 'pac-input');
+input.setAttribute('type', 'text');
+input.setAttribute('placeholder', 'Enter an address');
+container.appendChild(input);
+card.appendChild(titleBar);
+card.appendChild(container);
+map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+
+const autocomplete = new google.maps.places.Autocomplete(input, options);
+
+autocomplete.setFields(
+    ['address_components', 'geometry', 'name']);
+
+const originMarker = new google.maps.Marker({map: map});
+originMarker.setVisible(false);
+let originLocation = map.getCenter();
+
+autocomplete.addListener('place_changed', async () => {
+  originMarker.setVisible(false);
+  originLocation = map.getCenter();
+  const place = autocomplete.getPlace();
+
+  if (!place.geometry) {
+    window.alert('No address available for input: \'' + place.name + '\'');
+    return;
+  }
+
+  originLocation = place.geometry.location;
+  map.setCenter(originLocation);
+  map.setZoom(11);
+  console.log(place);
+
+  originMarker.setPosition(originLocation);
+  originMarker.setVisible(true);
+
+  
+  const rankedStores = await calculateDistances(map.data, originLocation);
+  showStoresList(map.data, rankedStores);
+
+  return;
+});
+}
+
+
+async function calculateDistances(data, origin) {
+const stores = [];
+const destinations = [];
+
+data.forEach((store) => {
+  const storeNum = store.getProperty('storeid');
+  const storeLoc = store.getGeometry().get();
+
+  stores.push(storeNum);
+  destinations.push(storeLoc);
+});
+const service = new google.maps.DistanceMatrixService();
+const getDistanceMatrix =
+  (service, parameters) => new Promise((resolve, reject) => {
+    service.getDistanceMatrix(parameters, (response, status) => {
+      if (status != google.maps.DistanceMatrixStatus.OK) {
+        reject(response);
+      } else {
+        const distances = [];
+        const durations = [];
+        const results = response.rows[0].elements;
+        for (let j = 0; j < results.length; j++) {
+          const element = results[j];
+          const distanceText = element.distance.text;
+          const distanceVal = element.distance.value;
+          const durationText = element.duration.text;
+          const durationVal = element.duration.value;
+          const distanceObject = {
+            storeid: stores[j],
+            distanceText: distanceText,
+            distanceVal: distanceVal,
+            durationText: durationText,
+            durationVal: durationVal
+          };
+          distances.push(distanceObject);
+        }
+
+        resolve(distances);
+        resolve(durations);
+      }
+    });
+  });
+
+const distancesList = await getDistanceMatrix(service, {
+  origins: [origin],
+  destinations: destinations,
+  travelMode: 'DRIVING',
+  unitSystem: google.maps.UnitSystem.IMPERIAL,
+});
+distancesList.sort((first, second) => {
+  return first.distanceVal - second.distanceVal 
+
+});
+return distancesList;
+
+}
+
+function showStoresList(data, stores) {
+if (stores.length == 0) {
+  console.log('empty stores');
+  return;
+}
+
+let panel = document.createElement('div');
+
+if (document.getElementById('panel')) {
+  panel = document.getElementById('panel');
+ 
+  if (panel.classList.contains('open')) {
+    panel.classList.remove('open');
+  }
+  if (getNextPage) getNextPage();
+} else {
+  panel.setAttribute('id', 'panel', 'description');
+  const body = document.body;
+  body.insertBefore(panel, body.childNodes[0]);
+}
+// Clear the previous details
+while (panel.lastChild) {
+  panel.removeChild(panel.lastChild);
+}
+
+stores.forEach((store) => {
+  // Add store details with text formatting
+  const name = document.createElement('p');
+  name.classList.add('place');
+
+  const currentStore = data.getFeatureById(store.storeid);
+  name.textContent = currentStore.getProperty('name');
+  panel.appendChild(name);
+
+  const distanceText = document.createElement('p');
+  distanceText.classList.add('distanceText');
+  distanceText.textContent = store.distanceText;
+  panel.appendChild(distanceText);
+  
+  const durationText = document.createElement('p');
+  durationText.classList.add('distanceText');
+  durationText.textContent = store.durationText;
+  panel.appendChild(durationText);
+});
+
+panel.classList.add('open');
+
+return;
+}
         "featureType": "administrative",
         "elementType": "all",
         "stylers": [
